@@ -1,6 +1,9 @@
 # NodeJS Auth REST API example with Express, Mysql, and JWT
 
-https://github.com/desirekaleba/node-mysql-jwt-auth
+cloned backend: https://github.com/desirekaleba/node-mysql-jwt-auth
+template: https://shreethemes.in/techwind/layouts/index.html
+official nuxt examples: https://github.com/nuxt-community/awesome-nuxt#official-examples
+cloned frontend: https://github.com/wmui/essay
 
 ## Features
 
