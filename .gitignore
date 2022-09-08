@@ -65,50 +65,50 @@ $RECYCLE.BIN/
 # Logs and databases
 ############################
 
-# .tmp
-# *.log
-# *.sql
-# *.sqlite
-# *.sqlite3
+.tmp
+*.log
+*.sql
+*.sqlite
+*.sqlite3
 
 
 ############################
 # Misc.
 ############################
 
-# *#
-# ssl
-# .idea
-# nbproject
-# public/uploads/*
-# !public/uploads/.gitkeep
+*#
+ssl
+.idea
+nbproject
+public/uploads/*
+!public/uploads/.gitkeep
 
 ############################
 # Node.js
 ############################
 
-# lib-cov
-# lcov.info
-# pids
-# logs
-# results
+lib-cov
+lcov.info
+pids
+logs
+results
 node_modules
-# .node_history
+.node_history
 
 ############################
 # Tests
 ############################
 
-# testApp
-# coverage
+testApp
+coverage
 
 ############################
 # Strapi
 ############################
 
-# .env
-# license.txt
-# exports
-# *.cache
-# build
-# .strapi-updater.json
+.env
+license.txt
+exports
+*.cache
+build
+.strapi-updater.json
