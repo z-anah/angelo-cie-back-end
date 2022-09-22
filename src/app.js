@@ -28,10 +28,10 @@ app.get("/api", (req, res) => {
 
 // anah
 const path = __dirname + "/views/";
-app.use(express.static(path));
 app.use((req, res, next) => {
   req.secure ? next() : res.redirect("https://" + req.headers.host + req.url);
 });
+app.use(express.static(path));
 app.get("*", function (req, res) {
   res.redirect("https://" + req.headers.host + req.url);
   res.sendFile(path + "index.html");
