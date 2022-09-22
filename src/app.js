@@ -5,6 +5,7 @@ const cors = require("cors");
 const authRoute = require("./routes/auth.route");
 
 const { httpLogStream } = require("./utils/logger");
+const { APP_MODE } = require("./utils/secrets");
 
 const app = express();
 
@@ -29,11 +30,12 @@ app.get("/api", (req, res) => {
 // anah
 const path = __dirname + "/views/";
 app.use((req, res, next) => {
-  req.secure ? next() : res.redirect("https://" + req.headers.host + req.url);
+  if (APP_MODE === "production")
+    req.secure ? next() : res.redirect("https://" + req.headers.host + req.url);
+  else next();
 });
 app.use(express.static(path));
 app.get("*", function (req, res) {
-  res.redirect("https://" + req.headers.host + req.url);
   res.sendFile(path + "index.html");
 });
 // anah end
