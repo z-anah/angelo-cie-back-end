@@ -8,6 +8,7 @@ const { httpLogStream } = require("./utils/logger");
 
 const app = express();
 
+app.enable("trust proxy");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan("dev"));
@@ -28,7 +29,11 @@ app.get("/api", (req, res) => {
 // anah
 const path = __dirname + "/views/";
 app.use(express.static(path));
+app.use((req, res, next) => {
+  req.secure ? next() : res.redirect("https://" + req.headers.host + req.url);
+});
 app.get("*", function (req, res) {
+  res.redirect("https://" + req.headers.host + req.url);
   res.sendFile(path + "index.html");
 });
 // anah end
