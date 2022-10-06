@@ -3,20 +3,22 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 const authRoute = require("./routes/auth.route");
+const blogRoute = require("./routes/blog.route");
 
 const { httpLogStream } = require("./utils/logger");
 const { APP_MODE } = require("./utils/secrets");
 
 const app = express();
 
+app.use(cors())
 app.enable("trust proxy");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 app.use(morgan("combined", { stream: httpLogStream }));
-app.use(cors());
 
 app.use("/api/auth", authRoute);
+app.use("/api", blogRoute);
 
 app.get("/api", (req, res) => {
   res.status(200).send({
