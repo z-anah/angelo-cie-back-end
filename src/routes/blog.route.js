@@ -6,8 +6,8 @@ const blogController = require('../controllers/blog.controller');
 router.route('/blog')
     .post(asyncHandler(blogController.create));
 
-router.route('/blog/ispublic')
-    .post(asyncHandler(blogController.updateIsPublic));
+router.route('/blog')
+    .patch(asyncHandler(blogController.updateBlog));
 
 router.route('/blogs')
     .get(asyncHandler(blogController.getBlogs));

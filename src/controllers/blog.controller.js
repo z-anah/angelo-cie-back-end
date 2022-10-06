@@ -15,12 +15,10 @@ exports.getBlogs = (req, res) => {
         }
     });
 };
-exports.updateIsPublic = (req, res) => {
-    const { id, ispublic } = req.body;
+exports.updateBlog = (req, res) => {
+    const blog = new Blog(req.body)
 
-    const blog = new Blog({ id, ispublic })
-
-    Blog.updateIsPublic(blog, (err, data) => {
+    Blog.updateBlog(blog, (err, data) => {
         if (err) {
             res.status(500).send({
                 status: "error",

@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS users (
 const createTableBlogs = `
 CREATE TABLE IF NOT EXISTS blogs (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    isPublic BOOLEAN,
+    ispublic BOOLEAN,
     content mediumtext COLLATE utf8mb4_bin NOT NULL,
     created_on TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
 )
@@ -33,8 +33,10 @@ INSERT INTO blogs VALUES(null, ?, ?, NOW())
 `;
 
 // UPDATE
-const setIsPublicBlog = `
-UPDATE blogs SET isPublic = ? WHERE blogs.id = ?;
+const updateBlogQuery = `
+UPDATE blogs SET 
+    ispublic=IFNULL(?, ispublic), content=IFNULL(?, content) 
+    WHERE blogs.id = ?;
 `
 
 // SELECT
@@ -49,6 +51,6 @@ module.exports = {
     createDB,
     dropDB,
     createTableUSers, createNewUser,
-    createTableBlogs, createNewBlog, setIsPublicBlog, getBlogsQuery,
+    createTableBlogs, createNewBlog, updateBlogQuery, getBlogsQuery,
     findUserByEmail
 };

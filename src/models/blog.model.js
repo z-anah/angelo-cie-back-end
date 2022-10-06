@@ -1,5 +1,5 @@
 const db = require('../config/db.config');
-const { createNewBlog, setIsPublicBlog, getBlogsQuery } = require('../database/queries');
+const { createNewBlog, updateBlogQuery, getBlogsQuery } = require('../database/queries');
 const { logger } = require('../utils/logger');
 
 class Blog {
@@ -23,10 +23,11 @@ class Blog {
                 );
             });
     }
-    static updateIsPublic(newBlog, cb) {
-        db.query(setIsPublicBlog,
+    static updateBlog(newBlog, cb) {
+        db.query(updateBlogQuery,
             [
                 newBlog.ispublic,
+                newBlog.content,
                 newBlog.id
             ], (err, res) => {
                 if (err) {
@@ -37,6 +38,7 @@ class Blog {
                 cb(null, {
                     id: newBlog.id,
                     ispublic: newBlog.ispublic,
+                    content: newBlog.content,
                 });
             });
     }
