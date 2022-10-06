@@ -3,6 +3,9 @@ const { asyncHandler } = require('../middlewares/asyncHandler');
 const blogController = require('../controllers/blog.controller');
 
 
+router.route('/blog/:id')
+    .get(asyncHandler(blogController.getBlog));
+
 router.route('/blog')
     .post(asyncHandler(blogController.create));
 

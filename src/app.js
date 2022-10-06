@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const authRoute = require("./routes/auth.route");
 const blogRoute = require("./routes/blog.route");
+const usertrackRoute = require("./routes/usertrack.route");
 
 const { httpLogStream } = require("./utils/logger");
 const { APP_MODE } = require("./utils/secrets");
@@ -18,6 +19,7 @@ app.use(morgan("dev"));
 app.use(morgan("combined", { stream: httpLogStream }));
 
 app.use("/api/auth", authRoute);
+app.use("/api", usertrackRoute);
 app.use("/api", blogRoute);
 
 app.get("/api", (req, res) => {

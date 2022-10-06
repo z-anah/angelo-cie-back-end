@@ -1,5 +1,5 @@
 const db = require('../config/db.config');
-const { createNewBlog, updateBlogQuery, getBlogsQuery } = require('../database/queries');
+const { createNewBlog, updateBlogQuery, getBlogsQuery, getBlogQuery } = require('../database/queries');
 const { logger } = require('../utils/logger');
 
 class Blog {
@@ -7,6 +7,22 @@ class Blog {
         this.id = id;
         this.ispublic = ispublic;
         this.content = content;
+    }
+
+    static getBlog(blog, cb) {
+        db.query(getBlogQuery,
+            [
+                blog.id
+            ], (err, res) => {
+                if (err) {
+                    logger.error(err.message);
+                    cb(err, null);
+                    return;
+                }
+                cb(null,
+                    res[0]
+                );
+            });
     }
 
     static getBlogs(cb) {
@@ -23,42 +39,36 @@ class Blog {
                 );
             });
     }
-    static updateBlog(newBlog, cb) {
+    static updateBlog(blog, cb) {
         db.query(updateBlogQuery,
             [
-                newBlog.ispublic,
-                newBlog.content,
-                newBlog.id
+                blog.ispublic,
+                blog.content,
+                blog.title,
+                blog.id
             ], (err, res) => {
                 if (err) {
                     logger.error(err.message);
                     cb(err, null);
                     return;
                 }
-                cb(null, {
-                    id: newBlog.id,
-                    ispublic: newBlog.ispublic,
-                    content: newBlog.content,
-                });
+                cb(null, res);
             });
     }
 
-    static create(newBlog, cb) {
+    static create(blog, cb) {
         db.query(createNewBlog,
             [
-                newBlog.ispublic,
-                newBlog.content
+                blog.ispublic,
+                blog.title,
+                blog.content
             ], (err, res) => {
                 if (err) {
                     logger.error(err.message);
                     cb(err, null);
                     return;
                 }
-                cb(null, {
-                    id: res.insertId,
-                    ispublic: newBlog.ispublic,
-                    content: newBlog.content
-                });
+                cb(null, res);
             });
     }
 }

@@ -19,7 +19,19 @@ const createTableBlogs = `
 CREATE TABLE IF NOT EXISTS blogs (
     id INT PRIMARY KEY AUTO_INCREMENT,
     ispublic BOOLEAN,
+    title VARCHAR(250) NULL,
     content mediumtext COLLATE utf8mb4_bin NOT NULL,
+    created_on TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+)
+`;
+const createTableUserTracks = `
+CREATE TABLE IF NOT EXISTS usertracks (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    ip VARCHAR(250) NULL,
+    continent VARCHAR(250) NULL,
+    country VARCHAR(250) NULL,
+    region VARCHAR(250) NULL,
+    url VARCHAR(250) NULL,
     created_on TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
 )
 `;
@@ -29,13 +41,16 @@ const createNewUser = `
 INSERT INTO users VALUES(null, ?, ?, ?, ?, NOW())
 `;
 const createNewBlog = `
-INSERT INTO blogs VALUES(null, ?, ?, NOW())
+INSERT INTO blogs VALUES(null, ?, ?, ?, NOW())
+`;
+const createNewUserTracksQuery = `
+INSERT INTO usertracks VALUES(null, ?, ?, ?, ?, ?, NOW())
 `;
 
 // UPDATE
 const updateBlogQuery = `
 UPDATE blogs SET 
-    ispublic=IFNULL(?, ispublic), content=IFNULL(?, content) 
+ispublic=IFNULL(?, ispublic), title=IFNULL(?, title), content=IFNULL(?, content) 
     WHERE blogs.id = ?;
 `
 
@@ -46,11 +61,17 @@ SELECT * FROM users WHERE email = ?
 const getBlogsQuery = `
 SELECT * FROM blogs
 `;
+const getUserTracksQuery = `
+SELECT * FROM usertracks
+`;
+const getBlogQuery = `
+SELECT * FROM blogs WHERE id = ?
+`;
 
 module.exports = {
     createDB,
     dropDB,
-    createTableUSers, createNewUser,
-    createTableBlogs, createNewBlog, updateBlogQuery, getBlogsQuery,
-    findUserByEmail
+    createTableUSers, createNewUser, findUserByEmail,
+    createTableBlogs, createNewBlog, updateBlogQuery, getBlogsQuery, getBlogQuery,
+    createTableUserTracks, createNewUserTracksQuery, getUserTracksQuery
 };
