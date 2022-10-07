@@ -38,13 +38,13 @@ CREATE TABLE IF NOT EXISTS usertracks (
 
 // INSERT INTO
 const createNewUser = `
-INSERT INTO (firstname, lastname, email, password, created_on) VALUES users VALUES(?, ?, ?, ?, NOW())
+INSERT INTO users (firstname, lastname, email, password, created_on) VALUES (?, ?, ?, ?, NOW())
 `;
 const createNewBlog = `
-INSERT INTO (ispublic, title, content, created_on) VALUES blogs VALUES(?, ?, ?, NOW())
+INSERT INTO blogs (ispublic, title, content, created_on) VALUES (?, ?, ?, NOW())
 `;
 const createNewUserTracksQuery = `
-INSERT INTO (ip, continent, country, region, url, created_on) VALUES usertracks VALUES(?, ?, ?, ?, ?, NOW())
+INSERT INTO usertracks (ip, continent, country, region, url, created_on) VALUES (?, ?, ?, ?, ?, NOW())
 `;
 
 // UPDATE
