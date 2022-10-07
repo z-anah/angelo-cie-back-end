@@ -2,7 +2,7 @@ require("dotenv/config");
 
 const { logger } = require("./logger");
 
-const { DB_HOST, DB_USER, DB_PASS, DB_NAME, JWT_SECRET_KEY, APP_MODE } =
+const { DB_HOST, DB_USER, DB_PASS, DB_NAME, JWT_SECRET_KEY, APP_MODE, DB_PORT } =
   process.env;
 
 const requiredCredentials = [
@@ -12,6 +12,7 @@ const requiredCredentials = [
   "DB_NAME",
   "JWT_SECRET_KEY",
   "APP_MODE",
+  "DB_PORT"
 ];
 
 for (const credential of requiredCredentials) {
@@ -28,4 +29,5 @@ module.exports = {
   DB_NAME,
   JWT_SECRET_KEY,
   APP_MODE,
+  DB_PORT
 };
