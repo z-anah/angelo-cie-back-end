@@ -62,7 +62,10 @@ const getBlogsQuery = `
 SELECT * FROM blogs
 `;
 const getUserTracksQuery = `
-SELECT * FROM usertracks
+SELECT COUNT(ip) AS count, ip, continent, country, region, url, created_on  
+FROM usertracks 
+GROUP BY ip, url
+ORDER BY id DESC 
 `;
 const getBlogQuery = `
 SELECT * FROM blogs WHERE id = ?
