@@ -11,9 +11,6 @@
  */
 
 
-/*! http://mths.be/codepointat v0.1.0 by @mathias */
-
-
 /*!
  * Vue.js v2.7.10
  * (c) 2014-2022 Evan You
@@ -26,3 +23,6 @@
  * Copyright(c) 2015 Douglas Christopher Wilson
  * MIT Licensed
  */
+
+
+/*! http://mths.be/codepointat v0.1.0 by @mathias */
