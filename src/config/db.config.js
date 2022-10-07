@@ -13,7 +13,7 @@ logger.info("anah", {
 const connection = mysql.createConnection({
     host: DB_HOST,
     user: DB_USER,
-    password: DB_PASS,
+    password: "",
     database: DB_NAME,
     port: DB_PORT
 });
