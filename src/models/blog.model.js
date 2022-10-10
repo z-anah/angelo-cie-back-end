@@ -3,10 +3,11 @@ const { createNewBlog, updateBlogQuery, getBlogsQuery, getBlogQuery } = require(
 const { logger } = require('../utils/logger');
 
 class Blog {
-    constructor({ id, ispublic, content }) {
+    constructor({ id, ispublic, content, image }) {
         this.id = id;
         this.ispublic = ispublic;
         this.content = content;
+        this.image = image;
     }
 
     static getBlog(blog, cb) {
@@ -61,7 +62,8 @@ class Blog {
             [
                 blog.ispublic,
                 blog.title,
-                blog.content
+                blog.content,
+                blog.image
             ], (err, res) => {
                 if (err) {
                     logger.error(err.message);

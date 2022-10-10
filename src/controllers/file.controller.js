@@ -8,15 +8,13 @@ exports.fileUpload = (req, res) => {
             });
         } else {
             let avatar = req.files.file;
-            const name = new Date().getTime().toString()
-            avatar.mv('./public/images/' + name + avatar.name.split('.').pop());
+            const name = `${new Date().getTime().toString()}.${avatar.name.split('.').pop()}`
+            avatar.mv(`./public/images/${name}`);
             res.status(201).send({
                 status: "success",
                 message: 'File is uploaded',
                 data: {
                     name,
-                    mimetype: avatar.mimetype,
-                    size: avatar.size
                 }
             });
         }

@@ -125,3 +125,5 @@ dist
 **/.DS_Store
 *.log.json
 .env
+
+public/

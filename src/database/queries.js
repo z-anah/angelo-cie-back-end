@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS blogs (
     ispublic BOOLEAN,
     title VARCHAR(250) NULL,
     content mediumtext COLLATE utf8mb4_bin NOT NULL,
+    image VARCHAR(250) NULL,
     created_on TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
 )
 `;
@@ -41,7 +42,7 @@ const createNewUser = `
 INSERT INTO users (firstname, lastname, email, password, created_on) VALUES (?, ?, ?, ?, NOW())
 `;
 const createNewBlog = `
-INSERT INTO blogs (ispublic, title, content, created_on) VALUES (?, ?, ?, NOW())
+INSERT INTO blogs (ispublic, title, content, image, created_on) VALUES (?, ?, ?, ?, NOW())
 `;
 const createNewUserTracksQuery = `
 INSERT INTO usertracks (ip, continent, country, region, url, created_on) VALUES (?, ?, ?, ?, ?, NOW())
@@ -50,7 +51,7 @@ INSERT INTO usertracks (ip, continent, country, region, url, created_on) VALUES 
 // UPDATE
 const updateBlogQuery = `
 UPDATE blogs SET 
-ispublic=IFNULL(?, ispublic), title=IFNULL(?, title), content=IFNULL(?, content) 
+ispublic=IFNULL(?, ispublic), title=IFNULL(?, title), content=IFNULL(?, content), image=IFNULL(?, image)  
     WHERE blogs.id = ?;
 `
 
@@ -71,6 +72,7 @@ ORDER BY created_on DESC
 const getBlogQuery = `
 SELECT * FROM blogs WHERE id = ?
 `;
+const getNDisctinctIP = `SELECT COUNT(DISTINCT(ip)) FROM usertracks`;
 
 module.exports = {
     createDB,

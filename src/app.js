@@ -14,6 +14,7 @@ const { APP_MODE } = require("./utils/secrets");
 const app = express();
 
 app.use(fileUpload());
+app.use(express.static("public/images"));
 app.use(cors())
 app.enable("trust proxy");
 app.use(express.json());
