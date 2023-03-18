@@ -7,6 +7,7 @@ const authRoute = require("./routes/auth.route");
 const blogRoute = require("./routes/blog.route");
 const usertrackRoute = require("./routes/usertrack.route");
 const fileRoute = require("./routes/file.route");
+const mailRoute = require("./routes/mail.route");
 
 const { httpLogStream } = require("./utils/logger");
 const { APP_MODE } = require("./utils/secrets");
@@ -23,7 +24,7 @@ app.use(morgan("dev"));
 app.use(morgan("combined", { stream: httpLogStream }));
 
 app.use("/api/auth", authRoute);
-app.use("/api", usertrackRoute, fileRoute, blogRoute, (req, res) => {
+app.use("/api", usertrackRoute, fileRoute, blogRoute, mailRoute, (req, res) => {
   res.status(200).send({
     status: "success",
     data: {
